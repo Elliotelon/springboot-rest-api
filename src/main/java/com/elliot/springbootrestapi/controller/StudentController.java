@@ -50,7 +50,7 @@ public class StudentController {
         return new Student(id, firstName, lastName);
     }
 
-    // POST Request
+    // POST Request - create new resource
     // @PostMapping, @RequestBody
     // @PostMapping : HTTP POST 요청 처리
     // @RequestBody : HTTP requestbody -> Java Object로 변환 (내부적으로 HttpMessageConverter 사용)
@@ -58,6 +58,14 @@ public class StudentController {
     @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){
         System.out.println(student.getId());
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return student;
+    }
+
+    // @PutMapping - updating existing resource
+    @PutMapping("/student/{id}/update")
+    public Student updateStudent(@RequestBody Student student, @PathVariable("id") int studentId){
         System.out.println(student.getFirstName());
         System.out.println(student.getLastName());
         return student;
